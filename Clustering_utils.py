@@ -59,44 +59,44 @@ def merge_cluster_values(clusters, pairs):
 
     return merge_dicc
 
-# def save_clusters(clusters, pairs, path_to_save, mode = 'w'):
+def save_clusters(clusters, pairs, path_to_save, mode = 'w'):
+    print("SAVING CLUSTERS!")
+    merge_dicc = merge_cluster_values(clusters, pairs)
+
+    i = 0
+    with open(path_to_save, mode) as file:
+        for index in merge_dicc:
+            file.writelines(["Cluster ", str(i), ":\n"])
+            for word in merge_dicc[index]:
+                file.writelines([str(word[2]), "\n"])
+            file.write('\n\n----------')
+            i += 1
+
+# def save_clusters(clusters, pairs, path_to_save, mode = 'w+'):
 #     print("SAVING CLUSTERS!")
 #     merge_dicc = merge_cluster_values(clusters, pairs)
 
-#     i = 0
-#     with open(path_to_save, mode) as file:
-#         for index in merge_dicc:
-#             file.writelines(["Cluster ", str(i), ":\n"])
+#     for index in merge_dicc:
+#         i = 1
+#         with open('{}/clus_{}.tsv'.format(path_to_save, index), mode) as file:
+#             tsc_writer = csv.writer(file, delimiter='\t')
 #             for word in merge_dicc[index]:
-#                 file.writelines([str(word[2]), "\n"])
-#             file.write('\n\n----------')
-#             i += 1
+#                 tsc_writer.writerow([i, str(word[1])])
+#                 tsc_writer.writerow([i, str(word[2])])
+#                 i += 1
 
-def save_clusters(clusters, pairs, path_to_save, mode = 'w+'):
-    print("SAVING CLUSTERS!")
-    merge_dicc = merge_cluster_values(clusters, pairs)
+# def save_clusters(clusters, pairs, path_to_save, mode = 'w+'):
+#     print("SAVING CLUSTERS!")
+#     merge_dicc = merge_cluster_values(clusters, pairs)
 
-    for index in merge_dicc:
-        i = 1
-        with open('{}/clus_{}.tsv'.format(path_to_save, index), mode) as file:
-            tsc_writer = csv.writer(file, delimiter='\t')
-            for word in merge_dicc[index]:
-                tsc_writer.writerow([i, str(word[1])])
-                tsc_writer.writerow([i, str(word[2])])
-                i += 1
-
-def save_clusters(clusters, pairs, path_to_save, mode = 'w+'):
-    print("SAVING CLUSTERS!")
-    merge_dicc = merge_cluster_values(clusters, pairs)
-
-    clus_n = 0
-    with open('{}/clus_top_10.tsv'.format(path_to_save), mode) as file:
-        i = 1
-        tsc_writer = csv.writer(file, delimiter='\t')
-        for index in merge_dicc:
-            if clus_n < 10:
-                for word in merge_dicc[index]:
-                    tsc_writer.writerow([i, str(word[1])])
-                    tsc_writer.writerow([i, str(word[2])])
-                    i += 1
-            clus_n += 1
+#     clus_n = 0
+#     with open('{}/clus_top_10.tsv'.format(path_to_save), mode) as file:
+#         i = 1
+#         tsc_writer = csv.writer(file, delimiter='\t')
+#         for index in merge_dicc:
+#             if clus_n < 10:
+#                 for word in merge_dicc[index]:
+#                     tsc_writer.writerow([i, str(word[1])])
+#                     tsc_writer.writerow([i, str(word[2])])
+#                     i += 1
+#             clus_n += 1
