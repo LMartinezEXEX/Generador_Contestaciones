@@ -396,7 +396,7 @@ En nuestro proyecto; el conjunto de preguntas similares es unicamente el Trigger
 
 De esta forma conseguimos fine-tunear SBERT para nuestro nuevo objetivo de forma exitosa.
 
-### Desempeñoo del modelo
+### Desempeño del modelo
 
 Como expresamos previamente, nuestro objetivo es fine-tunear un modelo por cluster.
 En esta sección, veremos el desempeño de solo uno de estos modelos para no volver engorroso el informe.
@@ -484,6 +484,10 @@ Ninguno de ellos retornó una MUY BUENA respuesta, con casi un 60% MALAS individ
 Es curioso ademas como 3 de los 4 modelos a partir de clusters realizaron la misma respuesta bajo la misma pregunta. Donde estos 3 dieron una respuesta BUENA, esto nos podría indicar que el primer modelo no fue fine-tuneado con ejemplos que califiquen las vacunas como buenas o malas.
 Más alla de esto, las respuestas de los otros 3 modelos no son EXCELENTES.
 En el tópico nada relacionado a las vacunas, pregunta 5, los modelos por cluster realizaron la misma contestacion, MALA. Aquí podemos ver el pobre desempeño de nuestro proyecto en general debido al impacto que tiene el dataset sobre este.
+
+> Observacion: Recordar en todo momento que los modelos previos realizan una mera aproximación a la pregunta más similar del dataset con el cual fueron fine-tuneados (i.e. los clusters en este caso).
+Debido a que existen pocos ejemplos en cada cluster (poco más de 200 aproximadamente), los modelos tienen pocas comparaciones que realizar con respecto al Trigger input del usuario y los Triggers que conoce el modelo, y por lo tanto, pocas similutudes probables a encontrar.
+Debido a esto, podemos ver la gran probabilidad que el modelo **asigne el mismo Trigger a varias preguntas** del usuario, al cual le extrae la respuesta para retornar como output, pareciendo asi que retorna la misma Answer a muchas preguntas.
 
 El modelo que comprende a "**todos**" los clusters fue el mejor.
 60% de sus respuestas estan por encima de REGULAR. Esto puede deberse a la gran cantidad de ejemplos que tuvo para su fine-tuneo. Lo cual nos dá un ejemplo claro de como afecta la cantidad de ejemplos disponibles a la hora de afrontar un entrenamiento de modelo en la industria, y lo costoso que puede llegar a ser.
